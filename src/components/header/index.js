@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navbar, Container } from 'rbx';
 import LogoImage from '../../assets/images/logo.png';
+import '../../styles/header.scss';
 
 function Header() {
     return (
