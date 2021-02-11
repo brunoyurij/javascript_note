@@ -1,5 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import HeaderLogged from '../../../components/header_logged';
 
-const NotesScreen = () => <>Hello World</>;
+const Notes = () => (
+    <>
+        <HeaderLogged />
+        Hello World
+    </>
+);
 
-export default NotesScreen;
+export default Notes;
