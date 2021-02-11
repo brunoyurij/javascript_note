@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomeScreen from './screens/home';
 import RegisterScreen from './screens/auth/register';
 import LoginScreen from './screens/auth/login';
-import NotesIndexScreen from './screens/notes/index';
+import NotesIndexScreen from './screens/notes';
 import UserEditScreen from './screens/users/edit';
 import PrivateRoute from './components/auth/private_route';
 

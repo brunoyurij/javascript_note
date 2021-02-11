@@ -25,6 +25,16 @@ function HeaderLogged() {
                         </Link>
                     </Column>
                 </Column.Group>
+                <Navbar.Burger
+                    className="navbar-burger burger"
+                    aria-label="menu"
+                    aria-expanded="false"
+                    data-target="navbar-menu"
+                >
+                    <span aria-hidden="true" />
+                    <span aria-hidden="true" />
+                    <span aria-hidden="true" />
+                </Navbar.Burger>
             </Navbar.Brand>
 
             <Navbar.Menu>
