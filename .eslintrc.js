@@ -23,5 +23,7 @@ module.exports = {
         'jsx-a11y/anchor-is-valid': 'off',
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',
+        'react/prop-types': 'off',
+        'react/destructuring-assignment': 'off',
     },
 };

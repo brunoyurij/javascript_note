@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Navbar, Column, Button, Dropdown } from 'rbx';
 import '../../styles/header.scss';
 import { Redirect, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList } from '@fortawesome/free-solid-svg-icons';
 import LogoImage from '../../assets/images/logo-white.png';
 import UserService from '../../services/users';
 
-function HeaderLogged() {
+function HeaderLogged(props) {
     const [redirectToHome, setRedirectToHome] = useState(false);
 
     const logOut = async () => {
@@ -38,6 +40,27 @@ function HeaderLogged() {
             </Navbar.Brand>
 
             <Navbar.Menu>
+                <Navbar.Segment
+                    as="div"
+                    className="navbar-item navbar-start"
+                    align="start"
+                >
+                    <Navbar.Item as="div">
+                        <Button
+                            className="open-button"
+                            color="white"
+                            outlined
+                            // eslint-disable-next-line react/prop-types
+                            onClick={() =>
+                                props.setIsOpen((state) => {
+                                    props.setIsOpen(!state);
+                                })
+                            }
+                        >
+                            <FontAwesomeIcon icon={faList} />
+                        </Button>
+                    </Navbar.Item>
+                </Navbar.Segment>
                 <Navbar.Segment
                     as="div"
                     className="navbar-item navbar-end"
