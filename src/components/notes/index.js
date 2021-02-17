@@ -17,8 +17,21 @@ const Notes = (props) => {
         if (response.data.length >= 1) {
             setNotes(response.data.reverse());
             setCurrentNote(response.data[0]);
+        } else {
+            setNotes([]);
         }
     }
+
+    const createNote = async () => {
+        await NoteService.create();
+        fetchNotes();
+    };
+
+    const deleteNote = async (note) => {
+        // eslint-disable-next-line no-underscore-dangle
+        await NoteService.delete(note._id);
+        fetchNotes();
+    };
 
     useEffect(() => {
         fetchNotes();
@@ -45,7 +58,9 @@ const Notes = (props) => {
                     <List
                         notes={notes}
                         selectNote={selectNote}
+                        createNote={createNote}
                         current_note={currentNote}
+                        deleteNote={deleteNote}
                     />
                 </Menu>
 
