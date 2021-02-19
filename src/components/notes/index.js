@@ -28,7 +28,7 @@ const Notes = (props) => {
         const updatedNote = await NoteService.update(oldNote._id, params);
         // eslint-disable-next-line no-underscore-dangle
         const index = notes.findIndex((n) => n._id === oldNote._id);
-        console.log(index);
+
         notes[index] = updatedNote.data;
         setNotes([...notes]);
         setCurrentNote(updatedNote.data);
