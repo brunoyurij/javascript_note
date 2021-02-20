@@ -4,6 +4,7 @@ import { Column } from 'rbx';
 import List from './list';
 import NoteService from '../../services/notes';
 import Editor from './editor';
+import Search from './search';
 
 const Notes = (props) => {
     const [notes, setNotes] = useState([]);
@@ -12,6 +13,13 @@ const Notes = (props) => {
         body: '',
         id: '',
     });
+
+    const searchNotes = async (query) => {
+        const response = await NoteService.search(query);
+        setNotes(response.data);
+
+        if (response.data.length >= 1) setCurrentNote(response.data[0]);
+    };
 
     async function fetchNotes() {
         const response = await NoteService.index();
@@ -67,6 +75,7 @@ const Notes = (props) => {
                     customBurgerIcon={false}
                     customCrossIcon={false}
                 >
+                    <Search searchNotes={searchNotes} fetchNotes={fetchNotes} />
                     <List
                         notes={notes}
                         selectNote={selectNote}
