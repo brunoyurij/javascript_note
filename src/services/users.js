@@ -19,6 +19,10 @@ const UserService = {
         Api.put(`/users/password`, params, {
             headers: { 'x-access-token': localStorage.getItem('token') },
         }),
+    deleteUser: async () =>
+        Api.delete(`/users`, {
+            headers: { 'x-access-token': localStorage.getItem('token') },
+        }),
 };
 
 export default UserService;

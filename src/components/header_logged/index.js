@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Column, Button, Dropdown } from 'rbx';
 import '../../styles/header.scss';
 import { Redirect, Link } from 'react-router-dom';
@@ -9,11 +9,16 @@ import UserService from '../../services/users';
 
 function HeaderLogged(props) {
     const [redirectToHome, setRedirectToHome] = useState(false);
+    const [user, setUser] = useState({});
 
     const logOut = async () => {
         await UserService.logout();
         setRedirectToHome(true);
     };
+
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem('user')));
+    }, []);
 
     if (redirectToHome) return <Redirect to={{ pathname: '/' }} />;
 
@@ -74,7 +79,7 @@ function HeaderLogged(props) {
                                     color="white"
                                     outlined
                                 >
-                                    <span>Leonardo ▼</span>
+                                    <span>{user.name} ▼</span>
                                 </Button>
                             </Dropdown.Trigger>
                             <Dropdown.Menu>

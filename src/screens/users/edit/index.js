@@ -12,6 +12,7 @@ import {
     Help,
     Button,
 } from 'rbx';
+import { useHistory } from 'react-router-dom';
 import HeaderLogged from '../../../components/header_logged';
 import UserService from '../../../services/users';
 
@@ -23,6 +24,7 @@ const UserEdit = () => {
     const [name, setName] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [passwordVerify, setPasswordVerify] = React.useState('');
+    const history = useHistory();
 
     const updatePersonalData = async () => {
         const validateEmail = /\S+@\S+\.\S+/;
@@ -55,6 +57,17 @@ const UserEdit = () => {
             setStatus('success_password');
         } catch (err) {
             setStatus('error_password');
+        }
+    };
+
+    const deleteUser = async () => {
+        try {
+            await UserService.deleteUser();
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            history.push('/');
+        } catch (err) {
+            setStatus('error_remove');
         }
     };
 
@@ -224,7 +237,14 @@ const UserEdit = () => {
                     </Column.Group>
                     <Column.Group centered>
                         <Column size={4} className="has-text-right">
-                            Users Delete Button...
+                            <Button color="danger" onClick={deleteUser}>
+                                Remover Conta
+                            </Button>
+                            {status === 'error_remove' && (
+                                <Help color="primary">
+                                    Erro ao remover a conta
+                                </Help>
+                            )}
                         </Column>
                     </Column.Group>
                 </Container>
